@@ -49,7 +49,7 @@ jobs:
           password: ${{ secrets.EMAILPASSWORD }}
           subject: Daily Selenium Automation Report
           to: sumit666mohapatra@gmail.com
-          from: ${{ secrets.EMAIL_USERNAME }}
+          from: ${{ secrets.EMAILUSERNAME }}
           body: |
             Selenium execution completed successfully.
             Latest report is attached.
