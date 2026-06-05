@@ -50,10 +50,3 @@ jobs:
             Selenium execution completed.
             Latest report is attached.
           attachments: SeleniumSimple/reports/*.html
-
-          to: sumit666mohapatra@gmail.com
-          from: GitHub Actions
-
-          body: |
-            Selenium execution completed successfully.
-            Latest report is attached.
