@@ -1,0 +1,14 @@
+2026-06-04 16:29:42.402 [main] ERROR Listeners.ExtentReportListener - >>> TEST FAILED: RegisterUser | Reason: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.partialLinkText: Your registration completed' (tried for 20 second(s) with 500 milliseconds interval)
+2026-06-04 16:29:42.430 [main] ERROR BaseClass.BaseTest - TEST FAILED: RegisterUser
+2026-06-04 16:33:16.854 [main] ERROR Listeners.ExtentReportListener - >>> TEST FAILED: RegisterUser | Reason: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //div[text()='Your registration completed']' (tried for 20 second(s) with 500 milliseconds interval)
+2026-06-04 16:33:16.860 [main] ERROR BaseClass.BaseTest - TEST FAILED: RegisterUser
+2026-06-04 16:35:44.916 [main] ERROR Listeners.ExtentReportListener - >>> TEST FAILED: RegisterUser | Reason: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //div[text()='Your registration completed']' (tried for 20 second(s) with 500 milliseconds interval)
+2026-06-04 16:35:44.921 [main] ERROR BaseClass.BaseTest - TEST FAILED: RegisterUser
+2026-06-04 16:37:24.823 [main] ERROR Listeners.ExtentReportListener - >>> TEST FAILED: RegisterUser | Reason: If you use a '@FindAll' annotation, you must not also use a '@FindBy' annotation
+2026-06-04 16:37:24.828 [main] ERROR BaseClass.BaseTest - TEST FAILED: RegisterUser
+2026-06-04 16:38:17.995 [main] ERROR Listeners.ExtentReportListener - >>> TEST FAILED: RegisterUser | Reason: If you use a '@FindAll' annotation, you must not also use a '@FindBy' annotation
+2026-06-04 16:38:18.001 [main] ERROR BaseClass.BaseTest - TEST FAILED: RegisterUser
+2026-06-04 16:38:42.589 [main] ERROR Listeners.ExtentReportListener - >>> TEST FAILED: RegisterUser | Reason: If you use a '@FindAll' annotation, you must not also use a '@FindBy' annotation
+2026-06-04 16:38:42.598 [main] ERROR BaseClass.BaseTest - TEST FAILED: RegisterUser
+2026-06-04 22:00:01.184 [main] ERROR Listeners.ExtentReportListener - >>> TEST FAILED: RegisterUser | Reason: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.all({By.xpath: //div[contains(text(),'Your registration completed')],By.xpath: //div[@class='result']})' (tried for 20 second(s) with 500 milliseconds interval)
+2026-06-04 22:00:01.191 [main] ERROR BaseClass.BaseTest - TEST FAILED: RegisterUser
