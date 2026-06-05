@@ -1,14 +1,13 @@
 name: Selenium Daily Execution
-
 on:
   schedule:
     - cron: '30 18 * * *'   # 12:00 AM IST
-
   workflow_dispatch:
 
 jobs:
   selenium-test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -32,6 +31,17 @@ jobs:
           name: selenium-report
           path: reports/*.html
 
+      - name: Debug Secret        # ← Added here, just before Send Email
+        if: always()
+        run: |
+          if [ -z "$PASSWORD" ]; then
+            echo "SECRET IS EMPTY"
+          else
+            echo "SECRET IS SET (length: ${#PASSWORD})"
+          fi
+        env:
+          PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+
       - name: Send Email
         if: always()
         uses: dawidd6/action-send-mail@v3
@@ -42,10 +52,7 @@ jobs:
           username: sumit666mohapatra@gmail.com
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: Daily Selenium Automation Report
-          to: |
-              sumit666mohapatra@gmail.com,
-              mohapatrasumit70@gmail.com,
-              sumitkumarmohapatra21@gmail.com
+          to: sumit666mohapatra@gmail.com,mohapatrasumit70@gmail.com,sumitkumarmohapatra21@gmail.com
           from: sumit666mohapatra@gmail.com
           body: |
             Selenium execution completed successfully.
