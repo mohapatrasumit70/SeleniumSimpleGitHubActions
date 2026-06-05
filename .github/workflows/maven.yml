@@ -9,8 +9,6 @@ on:
 jobs:
   selenium-test:
     runs-on: ubuntu-latest
-    env:
-      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
