@@ -43,7 +43,10 @@ jobs:
           username: sumit666mohapatra@gmail.com
           password: ismnnfbrxhmzkyro
           subject: Daily Selenium Automation Report
-          to: sumit666mohapatra@gmail.com
+          to: |
+              sumit666mohapatra@gmail.com,
+              mohapatrasumit70@gmail.com,
+              sumitkumarmohapatra21@gmail.com
           from: sumit666mohapatra@gmail.com
           body: |
             Selenium execution completed successfully.
