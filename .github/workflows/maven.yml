@@ -23,13 +23,9 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@latest
 
-      # FIX 1: If pom.xml is in the root, remove/comment out the working-directory line.
-      # If it IS in a subfolder, make sure the folder name matches exactly (case-sensitive).
       - name: Run Selenium Tests
-        # working-directory: SeleniumSimple 
         run: mvn clean test -DsuiteXmlFile=src/test/resources/testng.xml
 
-      # FIX 2: Corrected artifact path if your project is at the root level
       - name: Upload Test Reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -37,7 +33,6 @@ jobs:
           name: selenium-report
           path: reports/*.html
 
-      # FIX 3: Perfectly aligned spaces for the mail plugin
       - name: Send Email
         if: always()
         uses: dawidd6/action-send-mail@v3
