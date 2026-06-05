@@ -40,11 +40,11 @@ jobs:
           server_address: smtp.gmail.com
           server_port: 587
           secure: true
-          username: ${{ secrets.EMAIL_USERNAME }}
+          username: sumit666mohapatra@gmail.com
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: Daily Selenium Automation Report
           to: sumit666mohapatra@gmail.com
-          from: ${{ secrets.EMAIL_USERNAME }}
+          from: sumit666mohapatra@gmail.com
           body: |
             Selenium execution completed successfully.
             Latest report is attached.
