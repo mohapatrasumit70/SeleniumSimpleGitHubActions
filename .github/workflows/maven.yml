@@ -2,8 +2,7 @@ name: Selenium Daily Execution
 
 on:
   schedule:
-    # 12:00 AM IST Daily
-    - cron: '30 18 * * *'
+    - cron: '30 18 * * *'   # 12:00 AM IST
 
   workflow_dispatch:
 
@@ -25,25 +24,32 @@ jobs:
         uses: browser-actions/setup-chrome@latest
 
       - name: Run Selenium Tests
-        run: mvn clean test
+        working-directory: SeleniumSimple
+        run: mvn clean test -DsuiteXmlFile=src/test/resources/testng.xml
 
       - name: Upload Test Reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: selenium-report
           path: SeleniumSimple/reports/*.html
 
       - name: Send Email
+        if: always()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 465
           secure: true
-          username: sumit666mohapatra@gmail.com
+          username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-
-
           subject: Daily Selenium Automation Report
+          to: sumit666mohapatra@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: |
+            Selenium execution completed.
+            Latest report is attached.
+          attachments: SeleniumSimple/reports/*.html
 
           to: sumit666mohapatra@gmail.com
           from: GitHub Actions
