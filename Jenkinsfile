@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    triggers {
+        cron('30 0 * * *')  // 6:00 AM IST (Jenkins server should use UTC)
+    }
+
+    tools {
+        maven 'Maven3'
+        jdk 'JDK17'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/mohapatrasumit70/SeleniumSimpleGitHubActions.git'
+            }
+        }
+
+        stage('Build & Execute Tests') {
+            steps {
+                sh 'mvn clean test -DsuiteXmlFile=testng.xml'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'reports/*.html', fingerprint: true
+
+            emailext(
+                subject: "Selenium Automation Report - ${BUILD_NUMBER}",
+                body: """
+                Hi Team,
+
+                Selenium execution completed.
