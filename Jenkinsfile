@@ -5,13 +5,12 @@ pipeline {
         cron('30 0 * * *')
     }
 
-   
     stages {
 
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/mohapatrasumit70/SeleniumSimpleGitHubActions.git'
+                    url: 'https://github.com/mohapatrasumit70/SeleniumSimpleGitHubActions'
             }
         }
 
@@ -20,10 +19,17 @@ pipeline {
                 bat 'mvn clean test -DsuiteXmlFile=testng.xml'
             }
         }
+
+        stage('Show Reports') {
+            steps {
+                bat 'dir reports'
+            }
+        }
     }
 
     post {
         always {
+
             archiveArtifacts artifacts: 'reports/*.html', fingerprint: true
 
             emailext(
@@ -31,16 +37,17 @@ pipeline {
                 body: """
 Hi Team,
 
-Selenium execution completed.
+Selenium automation execution has completed.
 
-Project: ${JOB_NAME}
-Build Number: ${BUILD_NUMBER}
-Build Status: ${currentBuild.currentResult}
+Job Name : ${JOB_NAME}
+Build Number : ${BUILD_NUMBER}
+Build Status : ${currentBuild.currentResult}
 
 Regards,
-Jenkins
+Sumit Kumar Mohapatra
 """,
-                to: "sumitkumarmohapatra21@gmail.com"           
+                to: "sumitkumarmohapatra21@gmail.com",
+                attachmentsPattern: 'reports/*.html'
             )
         }
     }
