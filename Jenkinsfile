@@ -5,11 +5,7 @@ pipeline {
         cron('30 0 * * *')
     }
 
-    tools {
-        maven 'Maven3'
-        jdk 'JDK21'
-    }
-
+   
     stages {
 
         stage('Checkout') {
