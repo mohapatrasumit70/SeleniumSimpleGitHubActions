@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        cron('30 0 * * *')  // 6:00 AM IST (Jenkins server should use UTC)
+        cron('30 0 * * *')
     }
 
     tools {
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build & Execute Tests') {
             steps {
-                sh 'mvn clean test -DsuiteXmlFile=testng.xml'
+                bat 'mvn clean test -DsuiteXmlFile=testng.xml'
             }
         }
     }
@@ -31,8 +31,21 @@ pipeline {
             archiveArtifacts artifacts: 'reports/*.html', fingerprint: true
 
             emailext(
-                subject: "Selenium Automation Report - ${BUILD_NUMBER}",
+                subject: "Selenium Automation Report - Build #${BUILD_NUMBER}",
                 body: """
-                Hi Team,
+Hi Team,
 
-                Selenium execution completed.
+Selenium execution completed.
+
+Project: ${JOB_NAME}
+Build Number: ${BUILD_NUMBER}
+Build Status: ${currentBuild.currentResult}
+
+Regards,
+Jenkins
+""",
+                to: "sumitkumarmohapatra21@gmail.com"           
+            )
+        }
+    }
+}
